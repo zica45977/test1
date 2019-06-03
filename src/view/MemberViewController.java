@@ -58,7 +58,7 @@ public class MemberViewController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ts = new TestControllerImpl();
 		// tableViewMember = new TableView<Member>();
-		/*
+
 		memberService = new MemberServiceImpl();
 		columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
@@ -66,7 +66,7 @@ public class MemberViewController implements Initializable {
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
-		*/
+
 		btnCreate.setOnMouseClicked(event -> handleCreate());		
 		// btnDelete.setOnMouseClicked(e -> handleDelete());		
 		btnExecute.setOnMouseClicked(event -> handleExecute());	
@@ -90,13 +90,13 @@ public class MemberViewController implements Initializable {
 			tfID.setText(member.getUid());
 			tfPW.setText(member.getUpw());
 			tfName.setText(member.getUname());
-			tfMobilePhone.setText(member.getMobilePhone());
+//			tfMobilePhone.setText(member.getMobilePhone());
 		}
 		 else {
 			 tfID.setText("");
 			 tfPW.setText("");
 		     tfName.setText("");
-		     tfMobilePhone.setText("010");
+//		     tfMobilePhone.setText("010");
 		 }
 	}
 	

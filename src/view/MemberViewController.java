@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 import application.Main;
 import controller.MemberService;
 import controller.MemberServiceImpl;
-import controller.TestController;
-import controller.TestControllerImpl;
+//import controller.TestController;
+//import controller.TestControllerImpl;
 import examples.TableViewTest.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,7 +48,7 @@ public class MemberViewController implements Initializable {
 	ArrayList<Member> memberList;
 	MemberService memberService;
 	
-	TestController ts;
+	//TestController ts;
 	
 	public MemberViewController() {
 		
@@ -56,7 +56,7 @@ public class MemberViewController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		ts = new TestControllerImpl();
+		//ts = new TestControllerImpl();
 		// tableViewMember = new TableView<Member>();
 
 		memberService = new MemberServiceImpl();
@@ -76,7 +76,7 @@ public class MemberViewController implements Initializable {
 	String str = ""; // 인스턴스 변수 - 객체 변수, 객체가 존재하는 동안 메모리에 존재
 	@FXML 
 	private void handleExecute() { // event source, listener, handler
-		str = ts.setTextArea(tfExecute.getText());
+		//str = ts.setTextArea(tfExecute.getText());
 		/*
 		str = taExecute.getText();
 		String name = tfExecute.getText();

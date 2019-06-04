@@ -21,7 +21,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			this.rootStage = primaryStage;
-	        this.rootStage.setTitle("PASSION");
+	        this.rootStage.setTitle("Have a PASSION!");
 	        
 			loadMainBoderPane();
 			loadMemberAnchorPane();			

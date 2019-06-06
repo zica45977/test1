@@ -65,7 +65,7 @@ public class MemberViewController implements Initializable {
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
 
-		btnCreate.setOnMouseClicked(event -> handleCreate());		
+		//btnCreate.setOnMouseClicked(event -> handleCreate());		
 		// btnDelete.setOnMouseClicked(e -> handleDelete());		
 		btnExecute.setOnMouseClicked(event -> handleExecute());	
 		
@@ -113,22 +113,33 @@ public class MemberViewController implements Initializable {
 		if(tfID.getText().length() > 0) {
 			Member newMember = 
 					new Member(tfID.getText(), tfPW.getText(), tfName.getText(), "");
-			data.add(newMember);			
-			tableViewMember.setItems(data);
-			memberService.create(newMember);
+			if( memberService.findByUid(newMember) < 0) {
+				data.add(newMember);			
+				tableViewMember.setItems(data);
+				memberService.create(newMember);
+			}
+			else {
+				showAlert("아이디 중복으로 등록할 수 없습니다.");
+			}
+			
 		} else
 			showAlert("ID 입력오류");
 	}
 	@FXML 
 	private void handleUpdate() {
-		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfMobilePhone.getText());
+		Member newMember = new Member(tfID.getText(), tfPW.getText(), tfName.getText(), "");
 
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
-		if (selectedIndex >= 0) {
+		// uid를 변경하고 수정 -> 생성으로 처리하게 된다.
+		// uid로 조회하는데 uid가 수정이되면 실제로 수정이 불가능함, findByUid() 가 -1 반환
+		if (selectedIndex != memberService.findByUid(newMember)) {
+			showAlert("아이디를 수정하면 업데이트 할 수 없습니다.");    
+		}
+		else if (selectedIndex >= 0) {
 			tableViewMember.getItems().set(selectedIndex, newMember);
 			memberService.update(newMember);			
 		} else {
-			showAlert("������ �� �� �����ϴ�.");          
+			showAlert("업데이트할 수 없습니다.");          
         }
 	}
 	
@@ -138,15 +149,15 @@ public class MemberViewController implements Initializable {
 		if (selectedIndex >= 0) {
 			memberService.delete(tableViewMember.getItems().remove(selectedIndex));			
 		} else {
-			showAlert("������ �� �� �����ϴ�.");
+			showAlert("삭제 대상이 없습니다.");
         }
 	}
 	
 	private void showAlert(String message) {
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.initOwner(mainApp.getRootStage());
-        alert.setTitle("Ȯ��");
-        alert.setContentText("Ȯ�� : " + message);            
+        alert.setTitle("알림");
+        alert.setContentText("확인 : " + message);            
         alert.showAndWait();
 	}
 

@@ -21,7 +21,7 @@ public class MemberFileReader {
 			m.setUid(strArr[0]);
 			m.setUpw(strArr[1]);
 			m.setUname(strArr[2]);
-			retObj.add(m);			
+			retObj.add(m);	//retObj.remove(index i);
 		}
 		return retObj;
 	}

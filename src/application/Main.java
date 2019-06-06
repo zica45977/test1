@@ -42,7 +42,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(Main.class.getResource("/view/member.css").toExternalForm());
 			rootStage.setScene(scene);	
 			rootStage.show();
-			
+			//controller : service 이름으로 작성
 			RootViewController controller = loader.getController();
             controller.setMainApp(this);
 			

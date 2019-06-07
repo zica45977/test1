@@ -40,7 +40,7 @@
             <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-            <Button id="btnRegister" fx:id="btnCreate" layoutX="200.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#handleCreate" text="등록" />
+      <Button id="btnCrete" fx:id="btnCreate" layoutX="200.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#handleCreate" text="등록" />
       <Button id="btnUpdate" fx:id="btnUpdate" layoutX="264.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#handleUpdate" text="수정" />
       <Button id="btnDelete" fx:id="btnDelete" layoutX="328.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#handleDelete" text="삭제" />
       

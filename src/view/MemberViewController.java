@@ -25,7 +25,7 @@ public class MemberViewController implements Initializable {
 	@FXML	private Button btnCreate;
 	@FXML	private Button btnUpdate;
 	@FXML	private Button btnDelete;
-	
+	@FXML	private Button btnMessageBox;
 	@FXML	private Button btnExecute;
 	@FXML	private TextArea taExecute;
 	@FXML	private TextField tfExecute;
@@ -66,11 +66,18 @@ public class MemberViewController implements Initializable {
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
 
 		btnCreate.setOnMouseClicked(event -> handleCreate());		
-		// btnDelete.setOnMouseClicked(e -> handleDelete());		
+		btnDelete.setOnMouseClicked(e -> handleDelete());		
 		btnExecute.setOnMouseClicked(event -> handleExecute());	
+		
+		btnMessageBox.setOnMouseClicked(event -> handleMessageBox());//메세지 띄우기
 		
 		loadMemberTableView();
 	}
+	@FXML
+	private void handleMessageBox() {
+		this.showAlert("메시지 박스가 나타납니다.");
+	}
+	
 	String str = ""; // 인스턴스 변수 - 객체 변수, 객체가 존재하는 동안 메모리에 존재
 	@FXML 
 	private void handleExecute() { // event source, listener, handler
@@ -110,7 +117,7 @@ public class MemberViewController implements Initializable {
 	
 	@FXML 
 	private void handleCreate() { // event source, listener, handler
-		if(tfID.getText().length() > 0) {
+		if(tfID.getText().length() > 0) { //경고처리
 			Member newMember = 
 					new Member(tfID.getText(), tfPW.getText(), tfName.getText(), "");
 			data.add(newMember);			
@@ -134,6 +141,7 @@ public class MemberViewController implements Initializable {
 	
 	@FXML 
 	private void handleDelete() {
+		System.out.println("Delete");
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			memberService.delete(tableViewMember.getItems().remove(selectedIndex));			
@@ -145,8 +153,8 @@ public class MemberViewController implements Initializable {
 	private void showAlert(String message) {
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.initOwner(mainApp.getRootStage());
-        alert.setTitle("Ȯ��");
-        alert.setContentText("Ȯ�� : " + message);            
+        alert.setTitle("알림");
+        alert.setContentText("경고 : " + message);            
         alert.showAndWait();
 	}
 

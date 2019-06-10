@@ -40,7 +40,7 @@ public class MemberDAO {
 	public int searchByID(Member member) { 
 		int ret = -1; // ret가 0 이상이면 검색 성공, -1 이면 검색 실패
 		int index = 0;
-		for(Member m : memberList) {
+		for(Member m : memberList) { //인핸스드 for문 
 			if(m.getUid().equals(member.getUid())) {
 				ret = index;
 				break;
@@ -74,6 +74,19 @@ public class MemberDAO {
 	}	
 	public int delete(Member member) {		
 		int ret = -1; // 0 이상이면 해당 아이디가 존재하므로 삭제, -1이하이면 삭제 실패
+		try {
+			int index = searchByID(member);
+			if(index > 0) { // -1이면 검색 실패, 등록 가능함
+				fw = new MemberFileWriter(file);
+				memberList.remove(index);
+				//memberList.remove(member);
+				
+				fw.saveMember(memberList);
+				ret = 0;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 		
 		return ret;
 	}
